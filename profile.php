@@ -44,6 +44,11 @@
                 <button type="submit" name="user_id" value="<?php echo $result->id ?>">Edit</button>
             </form>
         </td>
+        <td>
+            <form action ="deleteUser.php" method="post">
+                <button type="submit" name="user_id" value="<?php echo $result->id ?>">Delete</button>
+            </form>
+        </td>
     </tr>
   </tbody>
 </table>
