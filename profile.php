@@ -35,10 +35,15 @@
   </thead>
   <tbody>
     <tr>
-      <th scope="row"><?php echo $result->id ?></th>
-      <td><?php echo $result->name ?></td>
-      <td><?php echo $result->email ?></td>
-      <td><?php echo $result->phone_no ?></td>
+        <th scope="row"><?php echo $result->id ?></th>
+        <td><?php echo $result->name ?></td>
+        <td><?php echo $result->email ?></td>
+        <td><?php echo $result->phone_no ?></td>
+        <td>
+            <form action ="updateProfile.php" method="post">
+                <button type="submit" name="user_id" value="<?php echo $result->id ?>">Edit</button>
+            </form>
+        </td>
     </tr>
   </tbody>
 </table>

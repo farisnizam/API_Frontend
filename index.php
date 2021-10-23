@@ -49,7 +49,7 @@
 					
 					<th>
 						<form action ="profile.php" method="post">
-							<button type="submit" name="user_id" value="<?php echo $result->id ?>">Open</button>
+							<button type="submit" name="user_id" value="<?php echo $result->id ?>">View</button>
 						</form>
 					</th>
 
