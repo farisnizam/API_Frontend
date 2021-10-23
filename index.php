@@ -26,18 +26,27 @@
 		<thead>
 			<tr>
 				<th>ID</th>
-				<th>First Name</th>
-				<th>Last Name</th>
+				<th>Name</th>
 				<th>Email</th>
+				<th>Phone No</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php foreach ($results as $result): ?>
 				<tr>
 					<th><?php echo $result->id;?></th>
-					<th><?php echo $result->fname;?></th>
-					<th><?php echo $result->lname;?></th>
+					<th><?php echo $result->name;?></th>
 					<th><?php echo $result->email;?></th>
+					<th><?php echo $result->phone_no;?></th>
+					
+					<th>
+						<form action ="profile.php" method="post">
+						
+						<button type="submit" name="user_id" value="<?php echo $result->id ?>">Open</button>
+						</form>
+					</th>
+
 				</tr>
 			<?php endforeach ?>
 		</tbody>

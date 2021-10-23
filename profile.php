@@ -12,7 +12,9 @@
   </head>
   <body>
 	<?php
-	$api_url = 'http://127.0.0.1:8000/api/student/2';
+    $user_id=$_POST['user_id'];
+
+	$api_url = 'http://127.0.0.1:8000/api/student/'.$user_id;
 
 	// Read JSON file
 	$json_data = file_get_contents($api_url);
@@ -25,18 +27,18 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First Name</th>
-      <th scope="col">Last Name</th>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
       <th scope="col">Email</th>
+      <th scope="col">Phone No</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th scope="row"><?php echo $result->id ?></th>
-      <td><?php echo $result->fname ?></td>
-      <td><?php echo $result->lname ?></td>
-      <td>@<?php echo $result->email ?></td>
+      <td><?php echo $result->name ?></td>
+      <td><?php echo $result->email ?></td>
+      <td><?php echo $result->phone_no ?></td>
     </tr>
   </tbody>
 </table>
