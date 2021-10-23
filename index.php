@@ -12,6 +12,12 @@
   </head>
   <body>
 	<?php
+
+	// if (isset($_GET['message'])){
+	// 	echo "<div class='alert alert-sucess'>";
+	// 	echo $_GET['message']."</div>";
+	// }
+
 	$api_url = 'http://127.0.0.1:8000/api/students';
 
 	// Read JSON file
@@ -22,6 +28,7 @@
 	$results = json_decode($json_data);
 		
 	?>
+	<a href="addUser.php">New User</a>
 	<table class="table table-bordered">
 		<thead>
 			<tr>
@@ -42,8 +49,7 @@
 					
 					<th>
 						<form action ="profile.php" method="post">
-						
-						<button type="submit" name="user_id" value="<?php echo $result->id ?>">Open</button>
+							<button type="submit" name="user_id" value="<?php echo $result->id ?>">Open</button>
 						</form>
 					</th>
 
