@@ -65,17 +65,17 @@ if(isset($_SESSION["id"])) {
 </head>
 <body>
 	<div class="container">
-	<a href="register.php">New User</a>
+	<a href="register.php">Register</a>
 		<div class="mx-auto mt-5" style="width: 30%;">
 			<h2>Login Form</h2>
 
 			<form action="" method="POST">
 				<div class="message"><?php if($message!="") { echo $message; } ?></div>
 				<label>User Name:</label><br>
-				<input class="form-control" type="text" name="username">
+				<input class="form-control" type="text" name="username" required>
 				<br>
 				<label>Password:</label><br>
-				<input class="form-control" type="password" name="password">
+				<input class="form-control" type="password" name="password" required>
 				<br>
 				<br>
 				<input class="form-control btn btn-primary" type="submit" value="submit">
