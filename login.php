@@ -7,7 +7,7 @@ if(isset($_SESSION["id"])) {
 } else {
 	if(count($_POST)>0) {
 		$username = $_POST['username'];
-		$password = $_POST['password'];
+		$password = md5($_POST['password']);
 	
 		$url = 'http://127.0.0.1:8000/api/login';
 		$data = array("username" => $username,"password" => $password);
