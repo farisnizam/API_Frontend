@@ -12,51 +12,57 @@
   </head>
   <body>
 	<?php
+	session_start();
 
-	// if (isset($_GET['message'])){
-	// 	echo "<div class='alert alert-sucess'>";
-	// 	echo $_GET['message']."</div>";
-	// }
+	// Problem dan kne fix
+	if(!isset($_SESSION["id"])) {
+		header("Location:login.php");
+	} else {
 
-	$api_url = 'http://127.0.0.1:8000/api/students';
+	$user_id = $_SESSION["id"];
+    $role = $_SESSION["role"];
+
+	$api_url = 'http://127.0.0.1:8000/api/student/'.$user_id;
 
 	// Read JSON file
 	$json_data = file_get_contents($api_url);
 	
-	// echo $json_data;
 	// Decode JSON data into PHP array
-	$results = json_decode($json_data);
-		
-	?>
-	<a href="addUser.php">New User</a>
-	<table class="table table-bordered">
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>Name</th>
-				<th>Email</th>
-				<th>Phone No</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			<?php foreach ($results as $result): ?>
-				<tr>
-					<th><?php echo $result->id;?></th>
-					<th><?php echo $result->name;?></th>
-					<th><?php echo $result->email;?></th>
-					<th><?php echo $result->phone_no;?></th>
-					
-					<th>
-						<form action ="profile.php" method="post">
-							<button type="submit" name="user_id" value="<?php echo $result->id ?>">View</button>
-						</form>
-					</th>
+	$result = json_decode($json_data);
 
-				</tr>
-			<?php endforeach ?>
-		</tbody>
-	</table>
+	}
+	?>
+<div class="container-fluid">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone No</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+        <th scope="row"><?php echo $result->id ?></th>
+        <td><?php echo $result->name ?></td>
+        <td><?php echo $result->email ?></td>
+        <td><?php echo $result->phone_no ?></td>
+        <td>
+            <form action ="updateProfile.php" method="post">
+                <button type="submit" name="user_id" value="<?php echo $result->id ?>">Edit</button>
+            </form>
+        </td>
+        <td>
+            <form action ="deleteUser.php" method="post">
+                <button type="submit" name="user_id" value="<?php echo $result->id ?>">Delete</button>
+            </form>
+        </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
 
     <!-- Optional JavaScript; choose one of the two! -->
 
