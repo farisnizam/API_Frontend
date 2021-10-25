@@ -12,20 +12,25 @@
   </head>
   <body>
 	<?php
+    session_start();
 
+	if(!isset($_SESSION["id"])) {
+		header("Location:login.php");
+	} else {
+        $api_url = 'http://127.0.0.1:8000/api/students';
+
+        // Read JSON file
+        $json_data = file_get_contents($api_url);
+        
+        // Decode JSON data into PHP array
+        $results = json_decode($json_data);
+    }   
 	// if (isset($_GET['message'])){
 	// 	echo "<div class='alert alert-sucess'>";
 	// 	echo $_GET['message']."</div>";
 	// }
 
-	$api_url = 'http://127.0.0.1:8000/api/students';
-
-	// Read JSON file
-	$json_data = file_get_contents($api_url);
 	
-	// echo $json_data;
-	// Decode JSON data into PHP array
-	$results = json_decode($json_data);
 		
 	?>
 	<a href="addUser.php">Add New User</a>

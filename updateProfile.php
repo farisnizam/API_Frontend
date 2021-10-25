@@ -11,7 +11,8 @@
     <title>Hello, world!</title>
   </head>
   <body>
-	<?php
+<?php
+session_start();
 
 if(!isset($_SESSION["id"])) {
     header("Location:login.php");
@@ -56,7 +57,7 @@ if(!isset($_SESSION["id"])) {
 	$result = json_decode($json_data);
     
 }
-	?>
+?>
     <div class="container">
         <form action ="" method="post">
             <div class="row justify-content-center">
