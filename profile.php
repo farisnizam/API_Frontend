@@ -12,15 +12,24 @@
   </head>
   <body>
 	<?php
-        $user_id=$_POST['user_id'];
+    session_start();
+
+    if(!isset($_SESSION["id"])) {
+        header("Location:index.php");
+    } else {
+        
+        $user_id = $_SESSION["id"];
 
         $api_url = 'http://127.0.0.1:8000/api/student/'.$user_id;
 
         // Read JSON file
         $json_data = file_get_contents($api_url);
-        
+            
         // Decode JSON data into PHP array
         $result = json_decode($json_data);
+    
+    }
+        
 	?>
 <div class="container-fluid">
 <table class="table">
@@ -39,7 +48,7 @@
         <td><?php echo $result->email ?></td>
         <td><?php echo $result->phone_no ?></td>
         <td>
-            <form action ="updateProfile.php" method="post">
+            <form action ="updateProfile.php" method="get">
                 <button type="submit" name="user_id" value="<?php echo $result->id ?>">Edit</button>
             </form>
         </td>
