@@ -83,7 +83,8 @@
 
 	?>
     <div class="container">
-        <form action ="" method="post">
+	<a href="login.php">Login</a>
+        <form action ="" method="post" style="margin-top:180px;">
             <div class="row justify-content-center">
                 <div class="col-2 align-self-center">Name:</div>
                 <div class="col-2 align-self-center"><input type="text" name="name" required></div>
@@ -105,7 +106,7 @@
             </div>
 
             <div class="row justify-content-center">
-                <div class="col-4 align-self-center"><button type="submit" >Add User</button></div>
+                <div class="col-4 align-self-center"><button type="submit" >Register</button></div>
             </div>
         </form>
     </div>

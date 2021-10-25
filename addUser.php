@@ -18,6 +18,8 @@ session_start();
 if(!isset($_SESSION["id"])) {
     header("Location:login.php");
 } else {
+    
+    $role = $_SESSION["role"];
 
     if(count($_POST)>0) {
         $name=$_POST['name'];
@@ -45,32 +47,49 @@ if(!isset($_SESSION["id"])) {
     
 
 	?>
-    <div class="container">
-        <form action ="" method="post">
-            <div class="row justify-content-center">
-                <div class="col-2 align-self-center">Name:</div>
-                <div class="col-2 align-self-center"><input type="text" name="name" required></div>
-            </div>
+    <div class="container-fluid">
+        <div>    
+            <a href="logout.php" style="float:right;"> Logout</a>
+            <a href="index.php" style="float:right;margin-right: 12px;"> Home</a>
 
-            <div class="row justify-content-center">
-                <div class="col-2 align-self-center">Email:</div>
-                <div class="col-2 align-self-center"><input type="email" name="email" required></div>
-            </div>    
+        <?php
+        if ($role !== "user") {
+        ?>
+            <a href="userList.php" style="float:right;margin-right: 12px;">User List</a>
+        <?php	
+        }
+        ?>
+        </div>
 
-            <div class="row justify-content-center">
-                <div class="col-2 align-self-center">Phone No:</div>
-                <div class="col-2 align-self-center"><input type="text" name="phone_no" required></div>
-            </div>
+        <div class="row">
+            <div class="col-12 mt-5">
+                <form action ="" method="post">
+                    <div class="row justify-content-center">
+                        <div class="col-2 align-self-center">Name:</div>
+                        <div class="col-2 align-self-center"><input type="text" name="name" required></div>
+                    </div>
 
-            <div class="row justify-content-center">
-                <div class="col-2 align-self-center">Password:</div>
-                <div class="col-2 align-self-center"><input type="text" name="password" required></div>
-            </div>
+                    <div class="row justify-content-center">
+                        <div class="col-2 align-self-center">Email:</div>
+                        <div class="col-2 align-self-center"><input type="email" name="email" required></div>
+                    </div>    
 
-            <div class="row justify-content-center">
-                <div class="col-4 align-self-center"><button type="submit" >Add User</button></div>
+                    <div class="row justify-content-center">
+                        <div class="col-2 align-self-center">Phone No:</div>
+                        <div class="col-2 align-self-center"><input type="text" name="phone_no" required></div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-2 align-self-center">Password:</div>
+                        <div class="col-2 align-self-center"><input type="text" name="password" required></div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-4 align-self-center"><button type="submit" >Add User</button></div>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
   </body>
 </html>

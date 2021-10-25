@@ -31,48 +31,43 @@
 
 	}
 	?>
+
+
 <div class="container-fluid">
-<a href="userList.php">User List</a>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Phone No</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-        <th scope="row"><?php echo $result->id ?></th>
-        <td><?php echo $result->name ?></td>
-        <td><?php echo $result->email ?></td>
-        <td><?php echo $result->phone_no ?></td>
-        <td>
-            <form action ="updateProfile.php" method="get">
-                <button type="submit" name="user_id" value="<?php echo $result->id ?>">Edit</button>
-            </form>
-        </td>
-        <td>
-            <form action ="deleteUser.php" method="post">
-                <button type="submit" name="user_id" value="<?php echo $result->id ?>">Delete</button>
-            </form>
-        </td>
-    </tr>
-  </tbody>
-</table>
+<!-- <a href="profile.php"> Profile</a> -->
+<div>
+	<a href="logout.php" style="float:right;"> Logout</a>
+    <a href="index.php" style="float:right;margin-right: 12px;"> Home</a>
+
+<?php
+if ($role !== "user") {
+?>
+	<a href="userList.php" style="float:right;margin-right: 12px;">User List</a>
+<?php	
+}
+?>
 </div>
 
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Name</th>
+				<th scope="col">Email</th>
+				<th scope="col">Phone No</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><?php echo $result->name ?></td>
+				<td><?php echo $result->email ?></td>
+				<td><?php echo $result->phone_no ?></td>
+				<td>
+					<button type="submit" name="user_id" ><a href="profile.php" style="text-decoration: none;color:black;"> Profile</a></button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
 
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    -->
-  </body>
+</body>
 </html>
