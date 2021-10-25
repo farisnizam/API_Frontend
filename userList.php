@@ -28,7 +28,7 @@
 	$results = json_decode($json_data);
 		
 	?>
-	<a href="addUser.php">New User</a>
+	<a href="addUser.php">Add New User</a>
 	<table class="table table-bordered">
 		<thead>
 			<tr>

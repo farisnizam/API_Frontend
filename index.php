@@ -14,7 +14,6 @@
 	<?php
 	session_start();
 
-	// Problem dan kne fix
 	if(!isset($_SESSION["id"])) {
 		header("Location:login.php");
 	} else {
@@ -49,7 +48,7 @@
         <td><?php echo $result->email ?></td>
         <td><?php echo $result->phone_no ?></td>
         <td>
-            <form action ="updateProfile.php" method="post">
+            <form action ="updateProfile.php" method="get">
                 <button type="submit" name="user_id" value="<?php echo $result->id ?>">Edit</button>
             </form>
         </td>

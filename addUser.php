@@ -12,37 +12,57 @@
   </head>
   <body>
 	<?php
-    // $user_id=$_POST['user_id'];
 
-	// $api_url = 'http://127.0.0.1:8000/api/student/'.$user_id;
+if(!isset($_SESSION["id"])) {
+    header("Location:login.php");
+} else {
 
-	// Read JSON file
-	// $json_data = file_get_contents($api_url);
-	
-	// // Decode JSON data into PHP array
-	// $result = json_decode($json_data);
+    if(count($_POST)>0) {
+        $name=$_POST['name'];
+        $email=$_POST['email'];
+        $phone_no=$_POST['phone_no'];
+        $password=$_POST['password'];
+    
+        $url = 'http://127.0.0.1:8000/api/student';
+        $data = array("name" => $name,"email" => $email,"phone_no" => $phone_no,"password" => $password);
+
+        $postdata = json_encode($data);
+
+        $ch = curl_init($url); 
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $postdata);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+        $result = curl_exec($ch);
+        curl_close($ch);
+        print_r ($result);
+
+        header("Location: userList.php?message=New+student+$name+saved");
+    }
+}
+    
 
 	?>
     <div class="container">
-        <form action ="saveUser.php" method="post">
+        <form action ="" method="post">
             <div class="row justify-content-center">
                 <div class="col-2 align-self-center">Name:</div>
-                <div class="col-2 align-self-center"><input type="text" name="name"></div>
+                <div class="col-2 align-self-center"><input type="text" name="name" required></div>
             </div>
 
             <div class="row justify-content-center">
                 <div class="col-2 align-self-center">Email:</div>
-                <div class="col-2 align-self-center"><input type="email" name="email"></div>
+                <div class="col-2 align-self-center"><input type="email" name="email" required></div>
             </div>    
 
             <div class="row justify-content-center">
                 <div class="col-2 align-self-center">Phone No:</div>
-                <div class="col-2 align-self-center"><input type="text" name="phone_no"></div>
+                <div class="col-2 align-self-center"><input type="text" name="phone_no" required></div>
             </div>
 
             <div class="row justify-content-center">
                 <div class="col-2 align-self-center">Password:</div>
-                <div class="col-2 align-self-center"><input type="text" name="password"></div>
+                <div class="col-2 align-self-center"><input type="text" name="password" required></div>
             </div>
 
             <div class="row justify-content-center">
