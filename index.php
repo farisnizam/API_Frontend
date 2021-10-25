@@ -32,6 +32,7 @@
 	}
 	?>
 <div class="container-fluid">
+<a href="userList.php">User List</a>
 <table class="table">
   <thead>
     <tr>
