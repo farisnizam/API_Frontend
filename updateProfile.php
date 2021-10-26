@@ -18,6 +18,9 @@ if(!isset($_SESSION["id"])) {
     header("Location:login.php");
 } else {
 
+    
+    $role = $_SESSION["role"];
+
     if(count($_POST)>0) {
         $user_id=$_POST['user_id'];
         $name=$_POST['name'];
@@ -59,28 +62,50 @@ if(!isset($_SESSION["id"])) {
 }
 ?>
     <div class="container">
-        <form action ="" method="post">
-            <div class="row justify-content-center">
-                <!-- <input type="hidden" name="_method" value="PUT"> -->
-                <input type="hidden" name="password" value="<?php echo $result->password ?>">
-                <div class="col-2 align-self-center">Name:</div>
-                <div class="col-2 align-self-center"><input type="text" name="name" required value="<?php echo $result->name ?>"></div>
-            </div>
+        <div>
+            <a href="logout.php" style="float:right;"> Logout</a>
+            <a href="index.php" style="float:right;margin-right: 12px;"> Home</a>
 
-            <div class="row justify-content-center">
-                <div class="col-2 align-self-center">Email:</div>
-                <div class="col-2 align-self-center"><input type="email" name="email" required value="<?php echo $result->email ?>"></div>
-            </div>    
+        <?php
+        if ($role !== "user") {
+        ?>
+            <a href="userList.php" style="float:right;margin-right: 12px;">User List</a>
+        <?php	
+        }
+        ?>
 
-            <div class="row justify-content-center">
-                <div class="col-2 align-self-center">Phone No:</div>
-                <div class="col-2 align-self-center"><input type="text" name="phone_no" required value="<?php echo $result->phone_no ?>"></div>
+            <div style="float:right;margin-right: 12px;">
+                <form action ="changePassword.php" method="get">
+                    <button type="submit" name="user_id" value="<?php echo $result->id ?>">Change Password</button>
+                </form>
             </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mt-5">
+                <form action ="" method="post">
+                    <div class="row justify-content-center">
+                        <!-- <input type="hidden" name="_method" value="PUT"> -->
+                        <input type="hidden" name="password" value="<?php echo $result->password ?>">
+                        <div class="col-2 align-self-center">Name:</div>
+                        <div class="col-2 align-self-center"><input type="text" name="name" required value="<?php echo $result->name ?>"></div>
+                    </div>
 
-            <div class="row justify-content-center">
-                <div class="col-4 align-self-center"><button type="submit" name="user_id" required value="<?php echo $result->id ?>">Update</button></div>
+                    <div class="row justify-content-center">
+                        <div class="col-2 align-self-center">Email:</div>
+                        <div class="col-2 align-self-center"><input type="email" name="email" required value="<?php echo $result->email ?>"></div>
+                    </div>    
+
+                    <div class="row justify-content-center">
+                        <div class="col-2 align-self-center">Phone No:</div>
+                        <div class="col-2 align-self-center"><input type="text" name="phone_no" required value="<?php echo $result->phone_no ?>"></div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-4 align-self-center"><button type="submit" name="user_id" required value="<?php echo $result->id ?>">Update</button></div>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
   </body>
 </html>
