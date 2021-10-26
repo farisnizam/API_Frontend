@@ -74,11 +74,26 @@ if(!isset($_SESSION["id"])) {
         }
         ?>
 
+        <?php
+        if ($role == "superadmin") {
+        ?>
+            <div style="float:right;margin-right: 12px;">
+                <form action ="changeUserPassword.php" method="get">
+                    <button type="submit" name="user_id" value="<?php echo $result->id ?>">Change Password</button>
+                </form>
+            </div>
+        <?php	
+        } else {
+        ?>
             <div style="float:right;margin-right: 12px;">
                 <form action ="changePassword.php" method="get">
                     <button type="submit" name="user_id" value="<?php echo $result->id ?>">Change Password</button>
                 </form>
             </div>
+        <?php	
+        }
+        ?>    
+
         </div>
         <div class="row">
             <div class="col-12 mt-5">
